@@ -1,0 +1,131 @@
+@UserManagementAPI_HostAddress = http://localhost:5105
+
+
+### Retrieve all users
+GET http://localhost:5105/users
+Accept: application/json
+
+### Retrieve a specific user by ID
+GET http://localhost:5105/users/1
+Accept: application/json
+
+### Add a new user
+POST http://localhost:5105/users
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com"
+}
+
+### Update an existing user
+PUT http://localhost:5105/users/1
+Content-Type: application/json
+
+{
+  "name": "John Updated",
+  "email": "john.updated@example.com"
+}
+
+### Delete a user by ID
+DELETE http://localhost:5105/users/1
+Accept: application/json
+
+
+### Testing edge cases for User Management API
+
+### Retrieve a non-existent user by ID
+GET http://localhost:5105/users/999
+Accept: application/json
+
+### Add a user with an empty name
+POST http://localhost:5105/users
+Content-Type: application/json
+
+{
+  "name": "",
+  "email": "valid.email@example.com"
+}
+
+### Add a user with an empty email
+POST http://localhost:5105/users
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "email": ""
+}
+
+### Add a user with an invalid email format
+POST http://localhost:5105/users
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "email": "invalid-email-format"
+}
+
+### Update a non-existent user
+PUT http://localhost:5105/users/999
+Content-Type: application/json
+
+{
+  "name": "Updated Name",
+  "email": "updated.email@example.com"
+}
+
+### Delete a non-existent user
+DELETE http://localhost:5105/users/999
+Accept: application/json
+
+
+### Test Logging Middleware
+
+### GET request to retrieve all users (valid)
+GET http://localhost:5105/users
+Authorization: Bearer valid_token
+Accept: application/json
+
+### POST request to add a user (valid)
+POST http://localhost:5105/users
+Authorization: Bearer valid_token
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "email": "jane.doe@example.com"
+}
+
+### PUT request to update a non-existent user (trigger error handling)
+PUT http://localhost:5105/users/999
+Authorization: Bearer valid_token
+Content-Type: application/json
+
+{
+  "name": "Updated Name",
+  "email": "updated.email@example.com"
+}
+
+### DELETE request to remove a non-existent user (trigger error handling)
+DELETE http://localhost:5105/users/999
+Authorization: Bearer valid_token
+Accept: application/json
+
+### GET request to retrieve a user without Authorization header (invalid token)
+GET http://localhost:5105/users/1
+Accept: application/json
+
+### POST request to add a user with invalid data (trigger validation error)
+POST http://localhost:5105/users
+Authorization: Bearer valid_token
+Content-Type: application/json
+
+{
+  "name": "",
+  "email": "invalid-email-format"
+}
+
+### GET request to trigger exception (simulate error)
+GET http://localhost:5105/users/throw
+Authorization: Bearer valid_token
+Accept: application/json

@@ -1,0 +1,70 @@
+Activity 1:
+
+    Project Setup
+
+        Copilot provided the initial boilerplate code for setting up the ASP.NET Core Web API project using minimal APIs. This included the creation of the Program.cs file with basic configuration for building and running the application.
+
+    Generating CRUD Endpoints
+
+        Copilot assisted in creating the CRUD (Create, Read, Update, Delete) endpoints for managing user records. Specifically, it generated the code for:
+
+            GET /users: Retrieve a list of users.
+
+            GET /users/{id}: Retrieve a specific user by ID.
+
+            POST /users: Add a new user.
+
+            PUT /users/{id}: Update an existing user's details.
+
+            DELETE /users/{id}: Remove a user by ID.
+
+        Copilot suggested the structure and implementation of these endpoints, ensuring they were concise and efficient.
+
+    Enhancing Data Storage
+
+        Initially, Copilot suggested using a list to store user records. However, based on feedback regarding potential errors, Copilot facilitated the transition to using a dictionary for better data management and to avoid out-of-bounds errors.
+
+    Improving Code Quality
+
+        Throughout the development process, Copilot provided guidance on best practices, such as:
+
+            Using appropriate HTTP status codes for responses.
+
+            Ensuring clear and consistent naming conventions.
+
+            Implementing robust error handling to manage cases where users might not be found.
+
+    Testing and Validation
+
+        Copilot outlined the steps for testing the API endpoints using tools like Postman. It provided example requests and responses for each endpoint, helping to validate the functionality and correctness of the API.
+
+
+Activity 2:
+
+Documentation of Copilot’s Contributions in Debugging
+
+1. Identifying Issues
+
+    Validation Issues: Copilot pointed out the lack of validation for user input fields. This could lead to users being added with empty names or invalid email formats.
+
+    Error Handling: Copilot highlighted the absence of error handling for scenarios where users might not be found in the database.
+
+    Unhandled Exceptions: Copilot noted the potential for unhandled exceptions causing the API to crash, suggesting the need for robust exception handling mechanisms.
+
+2. Implementing Fixes
+
+    Validation for User Input Fields:
+
+        Copilot suggested adding checks to validate user data before processing. For example:
+
+    Error Handling for Failed Database Lookups:
+
+        Copilot recommended handling cases where users are not found in the database
+    
+    Handling Unhandled Exceptions:
+
+        Copilot advised wrapping operations in try-catch blocks to handle unexpected exceptions
+
+3. Testing and Validation
+
+    Creating Comprehensive Test Cases: Copilot assisted in creating test cases for various edge cases like invalid inputs, non-existent IDs, and unhandled exceptions.
